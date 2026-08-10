@@ -1,18 +1,17 @@
-#include &lt;stdio.h&gt;
+#include <stdio.h>
 
 int main() {
-int a[] = {10, 20, 30, 40, 50};
-int key = 30;
-int i;
+    int a[] = {10, 20, 30, 40, 50};
+    int key = 30;
+    int i;
 
-for (i = 0; i &lt; 5; i++) {
-if (a[i] == key) {
+    for (i = 0; i < 5; i++) {
+        if (a[i] == key) {
+            printf("element found at index %d", i);
+            return 0;
+        }
+    }
 
-printf(&quot;element found at index %d&quot;, i);
-return 0;
-}
-}
-
-printf(&quot;element not found&quot;);
-return 0;
+    printf("element not found");
+    return 0;
 }
