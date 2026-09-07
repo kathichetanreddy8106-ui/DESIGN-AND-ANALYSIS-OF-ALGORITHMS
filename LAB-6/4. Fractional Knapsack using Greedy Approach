@@ -1,0 +1,37 @@
+#include <stdio.h>
+struct item {
+    int w, v;
+};
+
+void knapsack(struct item a[], int n, int c) {
+    float total = 0;
+    int i, j;
+    for (i = 0; i < n - 1; i++) {
+        for (j = i + 1; j < n; j++) {
+            float r1 = (float)a[i].v / a[i].w;
+            float r2 = (float)a[j].v / a[j].w;
+            if (r1 < r2) {
+                struct item temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+    }
+    for (i = 0; i < n && c > 0; i++) {
+        if (a[i].w <= c) {
+            c -= a[i].w;
+            total += a[i].v;
+        } else {
+            total += (float)a[i].v / a[i].w * c;
+            c = 0;
+        }
+    }
+    printf("maximum profit = %.2f\n", total);
+}
+
+int main() {
+    struct item a[] = {{10, 60}, {20, 100}, {30, 120}};
+    int n = 3, c = 50;
+    knapsack(a, n, c);
+    return 0;
+}
