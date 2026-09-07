@@ -1,0 +1,21 @@
+#include <stdio.h>
+void maxmin(int a[], int i, int j, int *max, int *min){
+    int mid, max1, min1, max2, min2;
+    if (i == j) {
+        *max = *min = a[i];
+        return;
+    }
+    mid = (i + j) / 2;
+    maxmin(a, i, mid, &max1, &min1);
+    maxmin(a, mid + 1, j, &max2, &min2);
+    *max = (max1 > max2) ? max1 : max2;
+    *min = (min1 < min2) ? min1 : min2;
+}
+
+int main() {
+    int a[] = {15, 12, 29, 11, 71, 60};
+    int n = 6, max, min;
+    maxmin(a, 0, n - 1, &max, &min);
+    printf("maximum = %d \nminimum = %d", max, min);
+    return 0;
+}
